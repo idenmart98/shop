@@ -42,6 +42,7 @@ class Customer(AbstractUser):
     last_name = models.CharField(max_length=200, blank=True, null=True, verbose_name='Фамилия')
     email = models.EmailField(unique=True, verbose_name='Почта')
     password = models.CharField(blank=True, null=True, max_length=500)
+    phone = models.CharField(max_length=100, blank=True)
     created_at = models.DateTimeField(auto_now_add=True,null=True,blank=True)
     verified = models.BooleanField(default=False)
     avatar = models.CharField(max_length=500, blank=True, null=True, verbose_name=_('Изображение'))
