@@ -37,5 +37,15 @@ class Item(models.Model):
         return self.product__name
 
 
+class ProductImage(models.Model):
+    product_img = models.ForeignKey(Product, default=None, on_delete=models.CASCADE,related_name='images')
+    images = models.FileField(upload_to = 'images/')
 
+    class Meta:
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Изображения'
+
+
+    def __str__(self):
+        return self.product_img.name
     
