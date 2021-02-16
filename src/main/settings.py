@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'celery',
     'showcase',
     'authe',
 ]
@@ -68,6 +69,22 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'main.urls'
 
 AUTH_USER_MODEL = 'authe.Customer'
+
+
+
+EMAIL_FROM = 'malika.satimbaeva@iaau.edu.kg'
+EMAIL_BCC = 'Qualle'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'malika.satimbaeva@iaau.edu.kg'
+EMAIL_HOST_PASSWORD = '18010400132'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+SERVER_EMAIL = 'malika.satimbaeva@iaau.edu.kg'
+
 
 TEMPLATES = [
     {
@@ -141,8 +158,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+

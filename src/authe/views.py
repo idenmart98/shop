@@ -51,3 +51,4 @@ def confirm(request, code):
             return render(request, 'register.html', {'form': RegisterForm, 'message': 'Ваша почта подтверждена', 'success': True})
         return render(request, 'register.html', {'form': RegisterForm, 'message': 'Ваша почта уже подтверждена', 'success': True})
     return render(request, 'register.html', {'form': RegisterForm, 'message': 'Ваш код устарел, либо неправильный', 'success': True})
+
