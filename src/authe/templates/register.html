@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Регистрация</title>
+</head>
+<body>
+    {% if error %}
+    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">Ошибка</div>
+        <div class="card-body">
+          <p class="card-text">{{ error }}</p>
+        </div>
+    </div>
+    {% endif %}
+    {% if message %}
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-body">
+          <p class="card-text">{{ message }}</p>
+        </div>
+    </div>
+    {% endif %}
+    <form method='POST'> {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary" type="submit">Зарегистрироваться    </button>
+    </form>
+</body>
+</html>

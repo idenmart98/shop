@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в аккаунт</title>
+</head>
+<body>
+    {% if error %}
+    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">Ошибка</div>
+        <div class="card-body">
+          <p class="card-text">{{ error }}</p>
+        </div>
+    </div>
+    {% endif %}
+    <form method='POST'> {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary" type="submit">Войти в аккаунт</button>
+    </form>
+</body>
+</html>
