@@ -47,4 +47,4 @@ class ProductImage(models.Model):
 
 
     def __str__(self):
-        return self.product.title
+        return self.product_img.name
