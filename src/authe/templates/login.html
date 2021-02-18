@@ -1,9 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход в аккаунт</title>
+    <style>
+        .layer1 {
+            position: absolute;
+            bottom: 300;
+            right: 500;
+            width: 400;
+            flood-color: gray;
+        }
+    </style>
 </head>
 <body>
     {% if error %}
@@ -14,9 +26,14 @@
         </div>
     </div>
     {% endif %}
-    <form method='POST'> {% csrf_token %}
-        {{ form }}
-        <button class="btn btn-primary" type="submit">Войти в аккаунт</button>
-    </form>
+    <div class="layer1">
+        <form class="card card-body" method='POST'> {% csrf_token %}
+            {{ form }}
+            <br>
+            <button class="btn btn-primary" type="submit">Войти в аккаунт</button>
+        </form>
+    </div>
 </body>
 </html>
+
+{% endblock %}

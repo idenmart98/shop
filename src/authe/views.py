@@ -6,6 +6,9 @@ from .utils import send_register_mail
 
 # Create your views here.
 
+def base(request):
+    return render(request, 'base.html')
+
 def register(request):
     form = RegisterForm
 
@@ -26,8 +29,8 @@ def register(request):
                 password = request.POST['password'],
                 phone = request.POST['phone'])
             code = ConfirmCode.objects.create(customer = customer)
-            send_register_mail(f'Чтобы подтвердить почту, перейдите по ссылке http://127.0.0.1:8000/authee/register/confirm/{code.code}/', code.customer.email)
-            return render(request, 'register.html', {'form': form, 'message': 'Проверьте вашу почту'})
+            send_register_mail(f'Чтобы подтвердить почту, перейдите по ссылке http://127.0.0.1:8000/authe/register/confirm/{code.code}/', code.customer.email)
+            return render(request, 'reply.html', {'message': 'Проверьте вашу почту'})
 
         return render(request, 'register.html', {'form': form, 'error': 'Неправильный никнейм или пароль'})
 
@@ -38,6 +41,7 @@ def login(request):
     if request:
         if request.method == 'POST':
             print(Customer.objects.filter(username = request.POST['username'], password = request.POST['password']))
+            return render(request, 'reply.html', {'message': 'Вы вошли в аккаунт', 'success': True})
     return render(request, 'login.html', {'form': LoginForm()})
 
 def confirm(request, code):
@@ -48,6 +52,6 @@ def confirm(request, code):
             code.save()
             code.customer.verified = True
             code.customer.save()
-            return render(request, 'register.html', {'form': RegisterForm, 'message': 'Ваша почта подтверждена', 'success': True})
-        return render(request, 'register.html', {'form': RegisterForm, 'message': 'Ваша почта уже подтверждена', 'success': True})
-    return render(request, 'register.html', {'form': RegisterForm, 'message': 'Ваш код устарел, либо неправильный', 'success': True})
+            return render(request, 'reply.html', {'message': 'Ваша почта подтверждена', 'success': True})
+        return render(request, 'reply.html', {'message': 'Ваша почта уже подтверждена', 'success': True})
+    return render(request, 'reply.html', {'message': 'Ваш код устарел, либо неправильный', 'success': True})
