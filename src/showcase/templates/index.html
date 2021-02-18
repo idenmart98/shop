@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row fh5co-post-entry">
+		{% for p in product %}
+		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+			{% for i in p.images.all %}
+			<figure>
+				<a href="single.html"><img src="{{i.images.url}}" alt="Image" class="img-responsive"></a>
+			</figure>
+			{% endfor %}
+			<span class="fh5co-meta"><a href="single.html">{{p.name}}</a></span>
+			<h2 class="fh5co-article-title"><a href="single.html">{{p.price}}</a></h2>
+			<span class="fh5co-meta fh5co-date">{{p.description}}</span>
+		</article>
+		{% endfor %}
+		
+		<div class="clearfix visible-xs-block"></div>
+		
+		
+		<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
+		
+		
+		<div class="clearfix visible-xs-block"></div>
+		
+		
+	</div>
+</div>
+
+{% endblock %}
