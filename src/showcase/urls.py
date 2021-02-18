@@ -9,5 +9,5 @@ app_name = 'showcase'
 
 urlpatterns = [
     path('', index),
-    path('details/<str:product_id>/', details,name='details'),
+    path('details/<int:product_id>/', details,name='details'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
