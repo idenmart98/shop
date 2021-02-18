@@ -13,7 +13,7 @@ class RegisterForm(forms.ModelForm):
 
     username.widget.attrs.update({
         'class':'form-control',
-        'placeholder':'Ваш ник'
+        'placeholder':'Ваш ник',
     })
     email.widget.attrs.update({
         'class':'form-control',

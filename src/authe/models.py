@@ -37,12 +37,12 @@ class MainUserManager(BaseUserManager):
 
 class Customer(AbstractUser):
     username = models.CharField(max_length=100, blank=False, unique=True,
-                                db_index=True, verbose_name='Username',null=True)
+                                db_index=True, verbose_name='Никнейм',null=True)
     first_name = models.CharField(max_length=200, blank=True, null=True, verbose_name='Имя')
     last_name = models.CharField(max_length=200, blank=True, null=True, verbose_name='Фамилия')
     email = models.EmailField(unique=True, verbose_name='Почта')
-    password = models.CharField(blank=True, null=True, max_length=500)
-    phone = models.CharField(max_length=100, blank=True)
+    password = models.CharField(blank=True, null=True, max_length=500, verbose_name='Пароль')
+    phone = models.CharField(max_length=100, blank=True, verbose_name='Номер телефона')
     created_at = models.DateTimeField(auto_now_add=True,null=True,blank=True)
     verified = models.BooleanField(default=False)
     avatar = models.CharField(max_length=500, blank=True, null=True, verbose_name=_('Изображение'))
