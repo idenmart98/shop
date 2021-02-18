@@ -8,10 +8,10 @@
 		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 			{% for i in p.images.all %}
 			<figure>
-				<a href="single.html"><img src="{{i.images.url}}" alt="Image" class="img-responsive"></a>
+				<a href="{% url 'showcase:details' product_id=p.id %}"><img src="{{i.images.url}}" alt="Image" class="img-responsive"></a>
 			</figure>
 			{% endfor %}
-			<span class="fh5co-meta"><a href="single.html">{{p.name}}</a></span>
+			<span class="fh5co-meta"><a href="{% url 'showcase:details' product_id=p.id %}">{{p.name}}</a></span>
 			<h2 class="fh5co-article-title"><a href="single.html">{{p.price}}</a></h2>
 			<span class="fh5co-meta fh5co-date">{{p.description}}</span>
 		</article>

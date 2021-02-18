@@ -10,7 +10,7 @@ def index(request):
 
 def details(request,product_id):
     product = Product.objects.get(id = product_id)
-    image = ProductImage.objects.filter(product=product)
+    image = ProductImage.objects.filter(product_img=product)
 
     return render(request, 'index.html',{
         'product':product,
