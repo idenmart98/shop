@@ -14,22 +14,10 @@
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FREEHTML5.CO" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-  <!-- 
-	//////////////////////////////////////////////////////
-
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FREEHTML5.CO
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
-
-  	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
 	<meta property="og:url" content=""/>
@@ -56,12 +44,72 @@
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+	<style>
+		* {
+		  box-sizing: border-box;
+		}
+		
+		body {
+		  margin: 0;
+		  font-family: Arial;
+		}
+		
+		/* The grid: Four equal columns that floats next to each other */
+		.column {
+		  float: left;
+		  width: 25%;
+		  padding: 10px;
+		}
+		
+		/* Style the images inside the grid */
+		.column img {
+		  opacity: 0.8; 
+		  cursor: pointer; 
+		}
+		
+		.column img:hover {
+		  opacity: 1;
+		}
+		
+		/* Clear floats after the columns */
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+		
+		/* The expanding image container */
+		.container {
+			margin-bottom: 10px;
+			width: 500px;
+			height: 600px;
+		  	position: relative;
+		  	display: none;
+		}
+		
+		/* Expanding image text */
+		#imgtext {
+		  position: absolute;
+		  bottom: 15px;
+		  left: 15px;
+		  color: white;
+		  font-size: 20px;
+		}
+		
+		/* Closable button inside the expanded image */
+		.closebtn {
+		  position: absolute;
+		  top: 10px;
+		  right: 15px;
+		  color: white;
+		  font-size: 35px;
+		  cursor: pointer;
+		}
+		</style>
+
 
 	</head>
+
 	<body>
 	<div id="fh5co-offcanvas">
 		<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
@@ -122,36 +170,45 @@
 		</div>
 
 	</header>
-	<a href="#" class="fh5co-post-prev"><span><i class="icon-chevron-left"></i> Prev</span></a>
-	<a href="#" class="fh5co-post-next"><span>Next <i class="icon-chevron-right"></i></span></a>
-	<!-- END #fh5co-header -->
+
 	<div class="container-fluid">
 		<div class="row fh5co-post-entry single-entry">
 			<article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
-				<figure class="animate-box">
-					<img src="{% static 'images/single_1.jpg' %}" alt="Image" class="img-responsive">
-				</figure>
-				<span class="fh5co-meta animate-box"><a href="single.html">Travel</a></span>
-				<h2 class="fh5co-article-title animate-box"><a href="single.html">My First Time Traveling in Vietnam</a></h2>
-				<span class="fh5co-meta fh5co-date animate-box">March 6th, 2016</span>
-				
-				<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-					<div class="row">
-						<div class="col-lg-8 cp-r animate-box">
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large <a href="#">language</a> ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+				<span class="fh5co-meta animate-box"><a href="single.html">{{product.name}}</a></span>
+				<h2 class="fh5co-article-title animate-box"><a href="single.html">{{product.price}}</a></h2>
+				<span class="fh5co-meta fh5co-date animate-box">{{product.description}}</span>
+		
+			</article>
+		</div>
+	</div>
 
-							<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. </p>
+		
+		<div class="container">
+			<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+			<img id="expandedImg"style="width:500px;height:600px;">
+		</div>
+	<div class="row" style="margin-left:5px;">
+		{% for i in image.all %}
+		<div class="column">
+			
+			<img src="{{i.images.url}}" alt="Image"  style="width:250px;height:300px;" onclick="myFunction(this);">
+		</div>
+		{% endfor %}
+	</div>
 
-							<p>She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-						</div>
-						<div class="col-lg-4 animate-box">
-							<div class="fh5co-highlight right">
-								<h4>Highlight</h4>
-								<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia</p>
-							</div>
-						</div>
-					</div>
-				</div>
+
+
+
+	
+	
+	
+	<script>
+	function myFunction(imgs) {
+		var expandImg = document.getElementById("expandedImg");
+		expandImg.src = imgs.src;
+		expandImg.parentElement.style.display = "block";
+	}
+	</script>
 	</body>
 </html>
 
