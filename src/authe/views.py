@@ -19,7 +19,7 @@ def register(request):
             customer = Customer.objects.get(email=request.POST['email'])
             customer.codes.all().delete()
             code = ConfirmCode.objects.create(customer = customer)
-            send_register_mail(f'Чтобы подтвердить почту, перейдите по ссылке http://127.0.0.1:8000/authe/register/confirm/{code.code}/', code.customer.email)
+            send_register_mail.delay(f'Чтобы подтвердить почту, перейдите по ссылке http://127.0.0.1:8000/authe/register/confirm/{code.code}/', code.customer.email)
             return render(request, 'register.html', {'form': form, 'message': 'Проверьте вашу почту'})
 
         if save_form.is_valid():
@@ -29,7 +29,7 @@ def register(request):
                 password = request.POST['password'],
                 phone = request.POST['phone'])
             code = ConfirmCode.objects.create(customer = customer)
-            send_register_mail(f'Чтобы подтвердить почту, перейдите по ссылке http://127.0.0.1:8000/authe/register/confirm/{code.code}/', code.customer.email)
+            send_register_mail.delay(f'Чтобы подтвердить почту, перейдите по ссылке http://127.0.0.1:8000/authe/register/confirm/{code.code}/', code.customer.email)
             return render(request, 'reply.html', {'message': 'Проверьте вашу почту'})
 
         return render(request, 'register.html', {'form': form, 'error': 'Неправильный никнейм или пароль'})

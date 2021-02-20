@@ -8,3 +8,5 @@ def add(x,y):
     print(x+y)
     return x+y
 
+def send_register_mail(message, email):
+    send_mail('Authe', message, settings.DEFAULT_EMAIL_FROM, [email,])
