@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Category,Item,Product,ProductImage
+from .models import Category, Item, Product, ProductImage, Busket
 # Register your models here.
 
 admin.site.register(Category)
-
+admin.site.register(Busket)
 admin.site.register(Item)
 
 
