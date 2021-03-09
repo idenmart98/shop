@@ -12,7 +12,7 @@ def details(request,product_id):
     product = Product.objects.get(id = product_id)
     image = ProductImage.objects.filter(product_img=product)
 
-    return render(request, 'index.html',{
+    return render(request, 'single.html',{
         'product':product,
         'image': image
         })  
